@@ -1,0 +1,13 @@
+# 改行コードはリポジトリ内では LF に正規化し、チェックアウト時は各環境の設定に任せる
+* text=auto
+
+# バイナリファイルは改行変換の対象外
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.dll binary
+*.woff binary
+*.woff2 binary
+*.ttf binary

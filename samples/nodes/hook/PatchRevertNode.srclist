@@ -1,0 +1,5 @@
+# PatchRevertNode の構成ファイル
+PatchRevertNode.cs
+..\_shared\NgolModuleDefault.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolAddressResolve.cs

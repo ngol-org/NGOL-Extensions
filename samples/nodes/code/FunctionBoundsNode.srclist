@@ -1,0 +1,4 @@
+# FunctionBoundsNode の構成ファイル
+FunctionBoundsNode.cs
+..\_shared\NgolModuleDefault.cs
+..\_shared\NgolSafeMemory.cs

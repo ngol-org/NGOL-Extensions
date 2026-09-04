@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ネイティブ側（NgolBridge.cpp）から hostfxr の load_assembly_and_get_function_pointer で
+    直接呼ばれるマネージドエントリポイント。
+
+    アセンブリ名・型名・runtimeconfig のファイル名は NgolBridge.cpp に直書きされているため、
+    変更するとネイティブ側も併せて直す必要がある。
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>NgolActivator</AssemblyName>
+    <RootNamespace>NgolActivator</RootNamespace>
+    <!-- hostfxr_initialize_for_runtime_config が読む .runtimeconfig.json は、
+         ライブラリでは既定で生成されない。 -->
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildThisFileDirectory)=/_/</PathMap>
+    <!-- 配布物に開発環境のパスを残さない。 -->
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      コンパイル時の型解決のみに使う。実行時の実体は配置先フォルダから
+      Assembly.LoadFrom で読む（EntryPoint.LoadNgolAssemblies）。
+      ExcludeAssets="runtime" が無いと、推移的なパッケージ依存まで deps.json に載り、
+      配置先に存在しないファイルを要求して起動に失敗する。
+    -->
+    <ProjectReference Include="..\..\NodeGraphModLab\NodeGraphModLab.Core\NodeGraphModLab.Core.csproj"
+                      Private="false" ExcludeAssets="runtime" />
+    <ProjectReference Include="..\..\NodeGraphModLab\NodeGraphModLab.NodeAPI\NodeGraphModLab.NodeAPI.csproj"
+                      Private="false" ExcludeAssets="runtime" />
+    <ProjectReference Include="..\..\NodeGraphModLab\NodeGraphModLab.HostLogging\NodeGraphModLab.HostLogging.csproj"
+                      Private="false" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+</Project>

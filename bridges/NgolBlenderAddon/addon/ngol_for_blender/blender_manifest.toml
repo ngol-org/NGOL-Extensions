@@ -1,0 +1,37 @@
+schema_version = "1.0.0"
+
+id = "ngol_for_blender"
+version = "1.0.0"
+name = "NGOL for Blender"
+tagline = "Run NGOL inside Blender and drive it from a node graph"
+maintainer = "Node Graph Mod Lab Contributors"
+type = "add-on"
+
+blender_version_min = "4.2.0"
+
+# これは組み上げたパッケージの宣言。リポジトリのソースは MIT（LICENSE）。
+license = ["SPDX:GPL-3.0-or-later"]
+copyright = ["2026 Node Graph Mod Lab Contributors"]
+
+# ctypes で hostfxr を叩き、win-x64 の .NET ランタイムを前提にしている。
+# 宣言しておくと、動かない環境には入らない。
+platforms = ["windows-x64"]
+
+[permissions]
+# 待ち受けは 127.0.0.1 に閉じており、外へは出ない。
+# 公式のモデレーション指針も "It should not depend on external servers (localhost is fine)"
+# としているため network は宣言しない。
+# 理由文は 64 文字まで（検証器がそう言う）。
+files = "Load the NGOL runtime and exchange requests through files"
+
+[build]
+# 実行時に出来るものを配布物へ混ぜない。
+#    deploy スクリプトの消し忘れに頼らず、ここで宣言して担保する。
+paths_exclude_pattern = [
+  "__pycache__/",
+  "/.git/",
+  "/*.zip",
+  "/ngol/blender_bridge/",
+  "/ngol/*.log",
+  "/ngol/kvstore.db",
+]

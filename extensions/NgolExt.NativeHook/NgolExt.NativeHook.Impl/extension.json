@@ -1,0 +1,10 @@
+{
+  "id": "ngol.ext.native-hook",
+  "version": "1.4.0",
+  "apiVersion": 1,
+  "enabled": true,
+  "entryAssembly": "NgolExt.NativeHook.Impl.dll",
+  "entryType": "NgolExt.NativeHook.NativeHookExtension",
+  "capabilities": ["native.hook"],
+  "platforms": ["win-x64"]
+}

@@ -1,0 +1,127 @@
+{
+  "id": "background-scan-with-wait",
+  "name": "Background Scan With Wait",
+  "description": "大きなモジュールをバックグラウンドで走査し、待ってから結果を読む。走査中もホストは止まらない。左のノードが走査を始めて即座に戻り、真ん中が更新の回数で待ち、右が同じ入力でもう一度実行して結果を受け取る。待ちを挟んでも手前のノードの出力は新しくならないため、読むのは待った後に置いたノードのほう。対象は kernel32.dll にしてある。どのプロセスにも必ず居るので、そのまま実行できる。",
+  "schemaVersion": "0.2.0",
+  "version": 1,
+  "createdAt": "2026-08-17T03:20:00.000+00:00",
+  "nodes": [
+    {
+      "instanceId": "start-scan",
+      "nodeTypeId": "ngol.code.xref_find",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 60,
+        "y": 200
+      },
+      "paramValues": {
+        "module": "kernel32.dll",
+        "target_rva": "0xb7c0",
+        "scan_start_rva": "0x1000",
+        "scan_size": 786432,
+        "async": true,
+        "chunk_bytes": 262144
+      },
+      "size": null
+    },
+    {
+      "instanceId": "wait-for-scan",
+      "nodeTypeId": "ngol.logic.wait",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 460,
+        "y": 200
+      },
+      "paramValues": {
+        "mode": "ticks",
+        "ticks": 24,
+        "timeout_ms": 8000
+      },
+      "size": null
+    },
+    {
+      "instanceId": "read-scan",
+      "nodeTypeId": "ngol.code.xref_find",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 820,
+        "y": 200
+      },
+      "paramValues": {
+        "module": "kernel32.dll",
+        "target_rva": "0xb7c0",
+        "scan_start_rva": "0x1000",
+        "scan_size": 786432,
+        "async": true,
+        "chunk_bytes": 262144
+      },
+      "size": null
+    }
+  ],
+  "connections": [
+    {
+      "fromNodeInstanceId": "start-scan",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "wait-for-scan",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "wait-for-scan",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "read-scan",
+      "toPortName": "__exec_in__"
+    }
+  ],
+  "fragments": [
+    {
+      "id": "all",
+      "nodeInstanceIds": [
+        "start-scan",
+        "wait-for-scan",
+        "read-scan"
+      ]
+    }
+  ],
+  "fragmentLinks": [],
+  "groups": [
+    {
+      "id": "g-scan",
+      "name": "Start, wait, read",
+      "description": "3 つのノードは同じ入力を持つ 2 つの走査ノードと、その間の待ち。左が走査を始めて即座に戻り、右が走り終えた結果を受け取る。入力が同じであることが両者を結びつけるので、片方の module や範囲を変えるともう片方は別の走査を指すことになる。待ちを長くしても足りなければ done が false のまま返るので、その場合は ticks を増やすか、右のノードをもう一度実行する。",
+      "nodeInstanceIds": [
+        "start-scan",
+        "wait-for-scan",
+        "read-scan"
+      ],
+      "color": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "a-why-two-nodes",
+      "text": "同じノードを 2 つ置く理由\n\n出力ポートはノードが実行された時点にしか書けない。走査が終わった後に、始めたノードの出力を後から埋めることはできない。だから読むのは待った後に置いたノードのほうになる。",
+      "position": {
+        "x": 60,
+        "y": 420
+      },
+      "size": {
+        "width": 360,
+        "height": 130
+      },
+      "color": null
+    },
+    {
+      "id": "a-what-to-read",
+      "text": "読む出力\n\ndone   走り終えたか\nhits   見つかった参照\ntruncated  上限で止めたので、この先にまだある\nprogress_rva  どこまで見たか\n\n0 件のときは scanned_bytes と truncated を見る。全部見た上での 0 件なのか、途中で止めただけなのかが分かれる。",
+      "position": {
+        "x": 820,
+        "y": 420
+      },
+      "size": {
+        "width": 380,
+        "height": 170
+      },
+      "color": null
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# AviUtl2ShareCanvasNode の構成ファイル
+AviUtl2ShareCanvasNode.cs
+_shared\AviUtl2Frame.cs
+ext\_shared\NgolSharedFrame.cs

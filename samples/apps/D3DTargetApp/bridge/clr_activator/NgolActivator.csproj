@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ブリッジ層のマネージド入口。C++（hostfxr）から Init/Tick/Shutdown を関数ポインタで呼ぶ。
+    これはアプリではない。ネイティブブリッジが後付けで CLR を起こして NGOL を載せるための
+    最小の入口アセンブリ。NGOL Core / NodeAPI / HostLogging はコンパイル時の型解決のみに使い
+    （Private=false）、実行時の実体は配置先から動的ロードする（EntryPoint.LoadNgolAssemblies）。
+  -->
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <!-- 実績（NgolActivator）と揃えて net8.0。net6.0 Core を前方互換で動的ロードする。 -->
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>NgolActivator</AssemblyName>
+    <RootNamespace>NgolActivator</RootNamespace>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildThisFileDirectory)=/_/</PathMap>
+  </PropertyGroup>
+
+  <!--
+    型の解決だけに使い、実行時の実体は配置先から読む（Private=false / ExcludeAssets=runtime）。
+    控えの DLL を置くと、そちらだけ古いまま気づかずコンパイルが通る。
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\NodeGraphModLab\NodeGraphModLab.Core\NodeGraphModLab.Core.csproj"
+                      Private="false" ExcludeAssets="runtime" />
+    <ProjectReference Include="..\..\..\..\..\NodeGraphModLab\NodeGraphModLab.NodeAPI\NodeGraphModLab.NodeAPI.csproj"
+                      Private="false" ExcludeAssets="runtime" />
+    <ProjectReference Include="..\..\..\..\..\NodeGraphModLab\NodeGraphModLab.HostLogging\NodeGraphModLab.HostLogging.csproj"
+                      Private="false" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+</Project>

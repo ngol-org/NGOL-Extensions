@@ -1,0 +1,6 @@
+# ValueScanNode の構成ファイル
+ValueScanNode.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolMemoryRegions.cs
+..\_shared\NgolValueCodec.cs
+..\_shared\NgolScanSession.cs

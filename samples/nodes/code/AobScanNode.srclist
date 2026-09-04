@@ -1,0 +1,5 @@
+# AobScanNode の構成ファイル
+AobScanNode.cs
+..\_shared\NgolModuleDefault.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolChunkedScan.cs

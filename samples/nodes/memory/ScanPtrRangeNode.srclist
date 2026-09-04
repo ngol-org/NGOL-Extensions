@@ -1,0 +1,4 @@
+# ScanPtrRangeNode の構成ファイル
+ScanPtrRangeNode.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolChunkedScan.cs

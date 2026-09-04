@@ -1,0 +1,18 @@
+--script:lua
+-- NGOL から積まれた式を、こちらの実行環境で走らせて結果を返す（Lua プロキシ）。
+-- 実行環境は自分のスレッドでしか触れないため、こちら側から取りに行く形にする。
+local f = obj.module("ngol")
+local id, code = f.take_request()
+if id > 0 then
+  local chunk, err = loadstring(code)
+  if chunk == nil then
+    f.put_result(id, "error: " .. err)
+  else
+    local ok, value = pcall(chunk)
+    if ok then
+      f.put_result(id, tostring(value))
+    else
+      f.put_result(id, "error: " .. tostring(value))
+    end
+  end
+end

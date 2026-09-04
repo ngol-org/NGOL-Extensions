@@ -1,0 +1,5 @@
+# PatchBytesNode の構成ファイル
+PatchBytesNode.cs
+..\_shared\NgolModuleDefault.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolAddressResolve.cs

@@ -1,0 +1,4 @@
+# ReadStringNode の構成ファイル
+ReadStringNode.cs
+..\_shared\NgolModuleDefault.cs
+..\_shared\NgolSafeMemory.cs

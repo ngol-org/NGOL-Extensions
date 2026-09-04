@@ -1,0 +1,5 @@
+# ReadBytesNode の構成ファイル
+ReadBytesNode.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolAddressResolve.cs
+..\_shared\NgolModuleDefault.cs

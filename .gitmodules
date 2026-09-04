@@ -1,0 +1,3 @@
+[submodule "NodeGraphModLab"]
+	path = NodeGraphModLab
+	url = https://github.com/ngol-org/NodeGraphModLab.git

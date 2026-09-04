@@ -1,0 +1,3 @@
+# ObsSourceAudioNode の構成ファイル
+ObsSourceAudioNode.cs
+_shared\ObsNative.cs

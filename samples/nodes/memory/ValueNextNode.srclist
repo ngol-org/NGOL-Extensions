@@ -1,0 +1,5 @@
+# ValueNextNode の構成ファイル
+ValueNextNode.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolValueCodec.cs
+..\_shared\NgolScanSession.cs

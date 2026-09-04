@@ -1,0 +1,4 @@
+# XrefIndexBuildNode の構成ファイル
+XrefIndexBuildNode.cs
+..\_shared\NgolModuleDefault.cs
+..\_shared\NgolSafeMemory.cs

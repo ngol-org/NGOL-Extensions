@@ -1,0 +1,5 @@
+# FindXrefsNode の構成ファイル
+FindXrefsNode.cs
+..\_shared\NgolModuleDefault.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolChunkedScan.cs

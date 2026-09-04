@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    ホストが既に .NET なので、ここには hostfxr も C++ も出てこない。
+    ホストが読みに来るフォルダへ DLL を 1 枚置けば、NGOL が同じプロセスで起きる。
+
+    ホストの DLL は同梱しない。導入先のものを参照するだけなので、
+    別の場所へ入れている人は -p:PdnRoot=... で差し替える。
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>NgolForPaintDotNet</AssemblyName>
+    <RootNamespace>NgolForPaintDotNet</RootNamespace>
+    <PdnRoot Condition="'$(PdnRoot)' == ''">C:\Program Files\paint.net</PdnRoot>
+    <!-- NGOL はコンパイル時の型解決だけに使う。実体は配置先から読む。 -->
+    <NgolRuntimeDir Condition="'$(NgolRuntimeDir)' == ''">$(MSBuildThisFileDirectory)..\..\..\build\runtime</NgolRuntimeDir>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildThisFileDirectory)=/_/</PathMap>
+    <!-- 配布物に開発環境のパスを残さない。 -->
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- ホストが持っている DLL をそのまま参照する（Private=false で出力へ写さない）。
+         名前空間と DLL 名が一致しないものがあるので注意:
+           PaintDotNet.Effects.Gpu  の型は PaintDotNet.Effects.Core.dll
+           PaintDotNet.Direct2D1    の型は PaintDotNet.Windows.dll -->
+    <Reference Include="PaintDotNet.Base"><HintPath>$(PdnRoot)\PaintDotNet.Base.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PaintDotNet.ComponentModel"><HintPath>$(PdnRoot)\PaintDotNet.ComponentModel.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PaintDotNet.Core"><HintPath>$(PdnRoot)\PaintDotNet.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PaintDotNet.Data"><HintPath>$(PdnRoot)\PaintDotNet.Data.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PaintDotNet.Effects.Core"><HintPath>$(PdnRoot)\PaintDotNet.Effects.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PaintDotNet.Effects.Gpu"><HintPath>$(PdnRoot)\PaintDotNet.Effects.Gpu.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PaintDotNet.Fundamentals"><HintPath>$(PdnRoot)\PaintDotNet.Fundamentals.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PaintDotNet.Framework"><HintPath>$(PdnRoot)\PaintDotNet.Framework.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PaintDotNet.Primitives"><HintPath>$(PdnRoot)\PaintDotNet.Primitives.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PaintDotNet.Windows"><HintPath>$(PdnRoot)\PaintDotNet.Windows.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="PaintDotNet.PropertySystem"><HintPath>$(PdnRoot)\PaintDotNet.PropertySystem.dll</HintPath><Private>false</Private></Reference>
+
+    <Reference Include="NodeGraphModLab.Core"><HintPath>$(NgolRuntimeDir)\NodeGraphModLab.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="NodeGraphModLab.NodeAPI"><HintPath>$(NgolRuntimeDir)\NodeGraphModLab.NodeAPI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="NodeGraphModLab.HostLogging"><HintPath>$(NgolRuntimeDir)\NodeGraphModLab.HostLogging.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+</Project>

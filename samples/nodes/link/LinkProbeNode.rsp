@@ -1,0 +1,3 @@
+# ClientWebSocket は netstandard が型を転送するだけで実体を持たない。
+# 転送先を名前で足す。相対指定は .rsp の場所の次にランタイムのフォルダが探される。
+/r:System.Net.WebSockets.Client.dll

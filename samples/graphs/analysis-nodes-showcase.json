@@ -1,0 +1,562 @@
+{
+  "id": "analysis-nodes-showcase",
+  "name": "Analysis Nodes Showcase",
+  "description": "Every analysis node in this repository (41 in total), laid out unconnected so the whole set can be read at a glance. Nothing runs on load: each node is placed on its own, and the groups explain what each family is for and which node to start from. Hover a port to read what it takes and returns.",
+  "schemaVersion": "0.2.0",
+  "version": 1,
+  "createdAt": "2026-08-15T03:55:42.559268+00:00",
+  "nodes": [
+    {
+      "instanceId": "n-ngol-code-aob_scan",
+      "nodeTypeId": "ngol.code.aob_scan",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-disasm",
+      "nodeTypeId": "ngol.code.disasm",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 340,
+        "y": 0
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-disasm_peek",
+      "nodeTypeId": "ngol.code.disasm_peek",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 680,
+        "y": 0
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-disasm_scan",
+      "nodeTypeId": "ngol.code.disasm_scan",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1020,
+        "y": 0
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-find_string",
+      "nodeTypeId": "ngol.code.find_string",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1360,
+        "y": 0
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-function_bounds",
+      "nodeTypeId": "ngol.code.function_bounds",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 150
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-module_base",
+      "nodeTypeId": "ngol.code.module_base",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 340,
+        "y": 150
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-module_list",
+      "nodeTypeId": "ngol.code.module_list",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 680,
+        "y": 150
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-pe_imports",
+      "nodeTypeId": "ngol.code.pe_imports",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1020,
+        "y": 150
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-pe_info",
+      "nodeTypeId": "ngol.code.pe_info",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1360,
+        "y": 150
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-xref_dump",
+      "nodeTypeId": "ngol.code.xref_dump",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 300
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-xref_find",
+      "nodeTypeId": "ngol.code.xref_find",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 340,
+        "y": 300
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-xref_index_build",
+      "nodeTypeId": "ngol.code.xref_index_build",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 680,
+        "y": 300
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-code-xref_lookup",
+      "nodeTypeId": "ngol.code.xref_lookup",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1020,
+        "y": 300
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-mem-pointer_path",
+      "nodeTypeId": "ngol.mem.pointer_path",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 586
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-mem-read_bytes",
+      "nodeTypeId": "ngol.mem.read_bytes",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 340,
+        "y": 586
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-mem-read_ptr",
+      "nodeTypeId": "ngol.mem.read_ptr",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 680,
+        "y": 586
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-mem-read_string",
+      "nodeTypeId": "ngol.mem.read_string",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1020,
+        "y": 586
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-mem-read_value",
+      "nodeTypeId": "ngol.mem.read_value",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1360,
+        "y": 586
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-mem-region_probe",
+      "nodeTypeId": "ngol.mem.region_probe",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 736
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-mem-scan_ptr_range",
+      "nodeTypeId": "ngol.mem.scan_ptr_range",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 340,
+        "y": 736
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-mem-value_next",
+      "nodeTypeId": "ngol.mem.value_next",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 680,
+        "y": 736
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-mem-value_scan",
+      "nodeTypeId": "ngol.mem.value_scan",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1020,
+        "y": 736
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-mem-write",
+      "nodeTypeId": "ngol.mem.write",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1360,
+        "y": 736
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-hook-managed_skip",
+      "nodeTypeId": "ngol.hook.managed_skip",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 1094
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-hook-managed_timing",
+      "nodeTypeId": "ngol.hook.managed_timing",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 340,
+        "y": 1094
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-hook-native_callback",
+      "nodeTypeId": "ngol.hook.native_callback",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 680,
+        "y": 1094
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-hook-patch_bytes",
+      "nodeTypeId": "ngol.hook.patch_bytes",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1020,
+        "y": 1094
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-hook-patch_revert",
+      "nodeTypeId": "ngol.hook.patch_revert",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1360,
+        "y": 1094
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-hook-safety_check",
+      "nodeTypeId": "ngol.hook.safety_check",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 1244
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-hook-skip_function",
+      "nodeTypeId": "ngol.hook.skip_function",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 340,
+        "y": 1244
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-hook-watch_function",
+      "nodeTypeId": "ngol.hook.watch_function",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 680,
+        "y": 1244
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-il-assembly_inspect",
+      "nodeTypeId": "ngol.il.assembly_inspect",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 1624
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-il-assembly_surface",
+      "nodeTypeId": "ngol.il.assembly_surface",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 340,
+        "y": 1624
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-gfx-capture_backbuffer",
+      "nodeTypeId": "ngol.gfx.capture_backbuffer",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 1960
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-gfx-present_address",
+      "nodeTypeId": "ngol.gfx.present_address",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 340,
+        "y": 1960
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-dev-kvstore_transaction_patch",
+      "nodeTypeId": "ngol.dev.kvstore_transaction_patch",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 2298
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-kvstore-manage",
+      "nodeTypeId": "ngol.kvstore.manage",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 340,
+        "y": 2298
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-proc-call_fn0",
+      "nodeTypeId": "ngol.proc.call_fn0",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 680,
+        "y": 2298
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-proc-call_fn1",
+      "nodeTypeId": "ngol.proc.call_fn1",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 1020,
+        "y": 2298
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "n-ngol-proc-ext_info",
+      "nodeTypeId": "ngol.proc.ext_info",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 0,
+        "y": 2448
+      },
+      "paramValues": {},
+      "size": null
+    }
+  ],
+  "connections": [],
+  "fragments": [],
+  "fragmentLinks": [],
+  "groups": [
+    {
+      "id": "group-code",
+      "name": "Code (14 nodes)",
+      "description": "Read native code: instructions, cross references, and image structure. Start from module_list / module_base to get a base address, then disasm at an RVA.",
+      "nodeInstanceIds": [
+        "n-ngol-code-aob_scan",
+        "n-ngol-code-disasm",
+        "n-ngol-code-disasm_peek",
+        "n-ngol-code-disasm_scan",
+        "n-ngol-code-find_string",
+        "n-ngol-code-function_bounds",
+        "n-ngol-code-module_base",
+        "n-ngol-code-module_list",
+        "n-ngol-code-pe_imports",
+        "n-ngol-code-pe_info",
+        "n-ngol-code-xref_dump",
+        "n-ngol-code-xref_find",
+        "n-ngol-code-xref_index_build",
+        "n-ngol-code-xref_lookup"
+      ],
+      "collapsed": false,
+      "color": null
+    },
+    {
+      "id": "group-memory",
+      "name": "Memory (10 nodes)",
+      "description": "Read and write process memory, and find where a value lives. value_scan then value_next narrows candidates by how they change; pointer_path turns a hit into a route that survives a restart.",
+      "nodeInstanceIds": [
+        "n-ngol-mem-pointer_path",
+        "n-ngol-mem-read_bytes",
+        "n-ngol-mem-read_ptr",
+        "n-ngol-mem-read_string",
+        "n-ngol-mem-read_value",
+        "n-ngol-mem-region_probe",
+        "n-ngol-mem-scan_ptr_range",
+        "n-ngol-mem-value_next",
+        "n-ngol-mem-value_scan",
+        "n-ngol-mem-write"
+      ],
+      "collapsed": false,
+      "color": null
+    },
+    {
+      "id": "group-hook",
+      "name": "Hook (8 nodes)",
+      "description": "Intercept or alter execution. safety_check first: it reports instruction patterns that make a detour unsafe. patch_bytes always pairs with patch_revert.",
+      "nodeInstanceIds": [
+        "n-ngol-hook-managed_skip",
+        "n-ngol-hook-managed_timing",
+        "n-ngol-hook-native_callback",
+        "n-ngol-hook-patch_bytes",
+        "n-ngol-hook-patch_revert",
+        "n-ngol-hook-safety_check",
+        "n-ngol-hook-skip_function",
+        "n-ngol-hook-watch_function"
+      ],
+      "collapsed": false,
+      "color": null
+    },
+    {
+      "id": "group-il",
+      "name": "IL (2 nodes)",
+      "description": "Inspect managed assemblies without loading them.",
+      "nodeInstanceIds": [
+        "n-ngol-il-assembly_inspect",
+        "n-ngol-il-assembly_surface"
+      ],
+      "collapsed": false,
+      "color": null
+    },
+    {
+      "id": "group-graphics",
+      "name": "Graphics (2 nodes)",
+      "description": "Capture what the application is presenting. The backbuffer node detects D3D11 and D3D12 on its own.",
+      "nodeInstanceIds": [
+        "n-ngol-gfx-capture_backbuffer",
+        "n-ngol-gfx-present_address"
+      ],
+      "collapsed": false,
+      "color": null
+    },
+    {
+      "id": "group-proc",
+      "name": "Process and storage (5 nodes)",
+      "description": "Call exported functions, report which extensions are present, and manage the shared key-value store.",
+      "nodeInstanceIds": [
+        "n-ngol-dev-kvstore_transaction_patch",
+        "n-ngol-kvstore-manage",
+        "n-ngol-proc-call_fn0",
+        "n-ngol-proc-call_fn1",
+        "n-ngol-proc-ext_info"
+      ],
+      "collapsed": false,
+      "color": null
+    }
+  ],
+  "annotations": []
+}

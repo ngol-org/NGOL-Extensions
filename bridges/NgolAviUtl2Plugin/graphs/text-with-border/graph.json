@@ -1,0 +1,136 @@
+{
+  "id": "aviutl2-sample-text-with-border",
+  "name": "テキストを置いて縁取りにする",
+  "description": "レイヤーにテキストを作り、色・縁取り・位置をエイリアスの中で決める。作ったあと、書いた値が本当に入ったかを読み戻して確かめ、絵にする。",
+  "schemaVersion": "0.2.0",
+  "nodes": [
+    {
+      "instanceId": "y0-show",
+      "nodeTypeId": "aviutl.edit.layer_enable",
+      "position": {
+        "x": -280,
+        "y": 0
+      },
+      "paramValues": {
+        "layer": 10,
+        "action": "on"
+      }
+    },
+    {
+      "instanceId": "a1",
+      "nodeTypeId": "aviutl.edit.create_object",
+      "paramValues": {
+        "layer": 10,
+        "frame": 0,
+        "alias": "[Object]\r\nframe=0,60\r\n[Object.0]\r\neffect.name=テキスト\r\nサイズ=80.00\r\n文字色=ffcc00\r\n影・縁色=202020\r\n文字装飾=縁取り文字\r\nテキスト=NGOL サンプル\r\n[Object.1]\r\neffect.name=標準描画\r\nY=-200.00\r\n"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "instanceId": "a2",
+      "nodeTypeId": "aviutl.edit.object_item",
+      "paramValues": {
+        "layer": 10,
+        "frame": 0,
+        "effect": "テキスト",
+        "item": "文字装飾"
+      },
+      "position": {
+        "x": 280,
+        "y": 0
+      }
+    },
+    {
+      "instanceId": "a3",
+      "nodeTypeId": "aviutl.edit.capture_canvas",
+      "paramValues": {
+        "output_path": "%TEMP%/ngol-aviutl2-samples/text-with-border/result.png",
+        "frame": 0,
+        "max_width": 480
+      },
+      "position": {
+        "x": 560,
+        "y": 0
+      }
+    },
+    {
+      "instanceId": "z0-del",
+      "nodeTypeId": "aviutl.edit.section_call",
+      "position": {
+        "x": 0,
+        "y": 220
+      },
+      "paramValues": {
+        "function": "delete_object",
+        "layer": 10,
+        "frame": 0,
+        "apply": true
+      }
+    }
+  ],
+  "connections": [
+    {
+      "fromNodeInstanceId": "y0-show",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "a1",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "a1",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "a2",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "a2",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "a3",
+      "toPortName": "__exec_in__"
+    }
+  ],
+  "fragmentLinks": [],
+  "fragments": [
+    {
+      "id": "run",
+      "name": "組み立てて確かめる",
+      "nodeInstanceIds": [
+        "y0-show",
+        "a1",
+        "a2",
+        "a3"
+      ]
+    },
+    {
+      "id": "cleanup",
+      "name": "片付ける",
+      "nodeInstanceIds": [
+        "z0-del"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "g-run",
+      "name": "組み立てて確かめる",
+      "nodeInstanceIds": [
+        "y0-show",
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "description": "レイヤーにテキストを作り、色・縁取り・位置をエイリアスの中で決める。作ったあと、書いた値が本当に入ったかを読み戻して確かめ、絵にする。"
+    },
+    {
+      "id": "g-clean",
+      "name": "片付ける",
+      "nodeInstanceIds": [
+        "z0-del"
+      ],
+      "description": "この見本が置いたものを消す。試したあと編集中のものに残らないようにする。"
+    }
+  ],
+  "annotations": []
+}

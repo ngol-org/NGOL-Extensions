@@ -1,0 +1,4 @@
+# DiceOverlayNode の構成ファイル
+DiceOverlayNode.cs
+DiceOverlay.cs
+DiceGeometry.cs

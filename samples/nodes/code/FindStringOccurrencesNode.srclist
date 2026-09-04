@@ -1,0 +1,4 @@
+# FindStringOccurrencesNode の構成ファイル
+FindStringOccurrencesNode.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolChunkedScan.cs

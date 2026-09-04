@@ -1,0 +1,5 @@
+# ReadValueNode の構成ファイル
+ReadValueNode.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolAddressResolve.cs
+..\_shared\NgolValueCodec.cs

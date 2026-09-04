@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>NgolExt.Il.Impl</AssemblyName>
+    <RootNamespace>NgolExt.Il</RootNamespace>
+    <!-- ホストのランタイムは配備先ごとに違う（CoreCLR / Mono）。
+         この DLL は capability を宣言するだけで、どちらからも読めるよう最小の土台に合わせる。 -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>1.0.0</Version>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildThisFileDirectory)=/_/</PathMap>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      マネージドメソッドの detour（capability: managed.detour）。
+      これが無いホストでは該当ノードがコンパイルできない。
+
+      この版は Iced を内包する。アセンブリ名は MonoMod.Iced だが
+      型の名前空間は Iced.Intel のままなので、code 拡張が配る Iced と衝突する。
+      extension.json の libraries.aliases で別名の下へ隔離すること
+         （宣言が無いと `using Iced.Intel;` を持つノードが CS0433 で全滅する）。
+    -->
+    <PackageReference Include="MonoMod.RuntimeDetour" Version="25.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\NodeGraphModLab\NodeGraphModLab.NodeAPI\NodeGraphModLab.NodeAPI.csproj" />
+  </ItemGroup>
+
+</Project>

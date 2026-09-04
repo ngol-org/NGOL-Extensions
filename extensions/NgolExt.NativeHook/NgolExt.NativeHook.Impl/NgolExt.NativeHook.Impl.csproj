@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>NgolExt.NativeHook.Impl</AssemblyName>
+    <RootNamespace>NgolExt.NativeHook</RootNamespace>
+    <TargetFrameworks>net6.0;net462</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>1.0.0</Version>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildThisFileDirectory)=/_/</PathMap>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NgolExt.NativeHook.Api\NgolExt.NativeHook.Api.csproj" />
+    <ProjectReference Include="..\..\..\NodeGraphModLab\NodeGraphModLab.NodeAPI\NodeGraphModLab.NodeAPI.csproj" />
+  </ItemGroup>
+
+</Project>

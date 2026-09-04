@@ -1,0 +1,6 @@
+# PointerPathNode の構成ファイル
+PointerPathNode.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolMemoryRegions.cs
+..\_shared\NgolAddressResolve.cs
+..\_shared\NgolModuleDefault.cs

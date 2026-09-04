@@ -1,0 +1,49 @@
+# .NET ビルド成果物
+bin/
+obj/
+*.user
+
+# ビルドスクリプトの出力
+build/
+
+# ネイティブ（CMake）
+native/**/build/
+samples/**/build/
+CMakeCache.txt
+CMakeFiles/
+
+# Visual Studio
+.vs/
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+packages/
+*.nupkg
+*.nuspec
+*.snupkg
+
+# WebUI プラグインの依存（ブリッジ側で取得するもの）
+node_modules/
+
+# ノードが読む第三者ライブラリ（取得スクリプトが置く）
+bridges/*/nodes/lib/
+
+# テスト結果
+TestResults/
+*.trx
+*.coverage
+
+# ログ / 一時ファイル / 永続ストア
+*.log
+*.tmp
+kvstore.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# エディタ
+.vscode/
+.idea/

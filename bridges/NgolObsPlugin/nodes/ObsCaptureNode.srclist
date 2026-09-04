@@ -1,0 +1,5 @@
+# ObsCaptureNode の構成ファイル
+ObsCaptureNode.cs
+_shared\ObsNative.cs
+_shared\ObsFrame.cs
+ext\_shared\NgolPngWriter.cs

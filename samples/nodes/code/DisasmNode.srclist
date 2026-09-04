@@ -1,0 +1,4 @@
+# DisasmNode の構成ファイル
+DisasmNode.cs
+..\_shared\NgolModuleDefault.cs
+..\_shared\NgolSafeMemory.cs

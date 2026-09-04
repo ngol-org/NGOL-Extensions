@@ -1,0 +1,11 @@
+{
+  "id": "ngol.ext.code",
+  "version": "1.0.1",
+  "apiVersion": 1,
+  "enabled": true,
+  "entryAssembly": "NgolExt.Code.Impl.dll",
+  "entryType": "NgolExt.Code.CodeExtension",
+  "capabilities": ["code.disasm", "code.xref"],
+  "platforms": ["win-x64"],
+  "libraries": { "preload": true }
+}

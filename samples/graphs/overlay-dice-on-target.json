@@ -1,0 +1,90 @@
+{
+  "id": "overlay-dice-on-target",
+  "name": "Overlay Dice On Target",
+  "description": "対象アプリが描いた絵の上に、回転するサイコロを重ねる。対象は絵の素材も描画のしかけも持たなくてよい。テクスチャも形もノードが組み立てる。実行すると対象の絵の上にサイコロが出る。何度実行してもよい。",
+  "schemaVersion": "0.2.0",
+  "version": 1,
+  "createdAt": "2026-08-16T07:19:58.497+00:00",
+  "nodes": [
+    {
+      "instanceId": "present",
+      "nodeTypeId": "ngol.gfx.present_address",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 60,
+        "y": 260
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "overlay",
+      "nodeTypeId": "ngol.gfx.overlay_dice",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 420,
+        "y": 260
+      },
+      "paramValues": {
+        "enabled": true,
+        "hook_present": true,
+        "show_fps": true
+      },
+      "size": null
+    }
+  ],
+  "connections": [
+    {
+      "fromNodeInstanceId": "present",
+      "fromPortName": "present_slot_address_hex",
+      "toNodeInstanceId": "overlay",
+      "toPortName": "slot_address_hex"
+    }
+  ],
+  "fragments": [
+    {
+      "id": "all",
+      "nodeInstanceIds": [
+        "present",
+        "overlay"
+      ]
+    }
+  ],
+  "fragmentLinks": [],
+  "groups": [],
+  "annotations": [
+    {
+      "id": "a-howto",
+      "text": "使い方\n\n実行する。対象の絵の上にサイコロが出る。\n止めるときは WebUI の永続実行の停止を使う。呼び出し表も元に戻る。\n\n対象は何も用意しなくてよい。絵の素材も、描画のしかけも、画像ファイルも要らない。",
+      "position": {
+        "x": 57.3867149,
+        "y": -123.330315
+      },
+      "width": 460,
+      "height": 160,
+      "color": "#e3f2fd"
+    },
+    {
+      "id": "a-present",
+      "text": "画面へ出す呼び出しが入っている、呼び出し表の枠を調べる。\n\n呼び出し表はクラスで共有されているので、ここで読んだ枠は\n対象自身のスワップチェーンが通る枠と同じもの。",
+      "position": {
+        "x": 59.5996361,
+        "y": 95.5522995
+      },
+      "width": 300,
+      "height": 150,
+      "color": "#fff8e1"
+    },
+    {
+      "id": "a-overlay",
+      "text": "その枠を差し替えて、対象が画面へ出す直前に割り込む。\n対象自身の描画先へ、対象の装置を借りて描く。\n\n対象の番地は渡さなくてよい。最初に入ってきた呼び出しが教えてくれる。",
+      "position": {
+        "x": 420,
+        "y": 95.5522995
+      },
+      "width": 320,
+      "height": 150,
+      "color": "#fff8e1"
+    }
+  ]
+}

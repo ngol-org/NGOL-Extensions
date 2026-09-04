@@ -1,0 +1,103 @@
+{
+  "id": "pdn-demo",
+  "name": "Paint.NET bridge demo",
+  "description": "Press the nodes from top to bottom. Each group is independent, so any of them can be run on its own. Group 4 and 5 change what the host does; both have a node that puts it back.",
+  "schemaVersion": "0.2.0",
+  "nodes": [
+    {
+      "instanceId": "n1-app-info",
+      "nodeTypeId": "pdn.app.info",
+      "position": { "x": 0, "y": 0 },
+      "paramValues": {}
+    },
+    {
+      "instanceId": "n2-plugins-mine",
+      "nodeTypeId": "pdn.plugins.list",
+      "position": { "x": 0, "y": 220 },
+      "paramValues": { "filter": "", "include_host": false }
+    },
+    {
+      "instanceId": "n2-plugins-host",
+      "nodeTypeId": "pdn.plugins.list",
+      "position": { "x": 290, "y": 220 },
+      "paramValues": { "filter": "PaintDotNet.Eff", "include_host": true }
+    },
+    {
+      "instanceId": "n3-doc-info",
+      "nodeTypeId": "pdn.doc.info",
+      "position": { "x": 0, "y": 460 },
+      "paramValues": {}
+    },
+    {
+      "instanceId": "n4-button-add",
+      "nodeTypeId": "pdn.ui.webui_button",
+      "position": { "x": 0, "y": 680 },
+      "paramValues": { "enabled": true }
+    },
+    {
+      "instanceId": "n4-button-remove",
+      "nodeTypeId": "pdn.ui.webui_button",
+      "position": { "x": 290, "y": 680 },
+      "paramValues": { "enabled": false }
+    },
+    {
+      "instanceId": "n5-watch-start",
+      "nodeTypeId": "pdn.tools.remember_layout",
+      "position": { "x": 0, "y": 900 },
+      "paramValues": { "enabled": true }
+    },
+    {
+      "instanceId": "n5-watch-stop",
+      "nodeTypeId": "pdn.tools.remember_layout",
+      "position": { "x": 290, "y": 900 },
+      "paramValues": { "enabled": false }
+    },
+    {
+      "instanceId": "n6-modules",
+      "nodeTypeId": "ngol.code.module_list",
+      "position": { "x": 0, "y": 1120 },
+      "paramValues": { "max": 12, "name_filter": "", "min_size_mb": 0 }
+    }
+  ],
+  "connections": [],
+  "fragmentLinks": [],
+  "groups": [
+    {
+      "id": "g1",
+      "name": "1. Is the bridge loaded",
+      "description": "Ask the host what it is. bridge_registered being true means the host found this bridge through its own plugin mechanism - nothing was injected. The version and the window title come from the host's own types, not from a file.",
+      "nodeInstanceIds": ["n1-app-info"]
+    },
+    {
+      "id": "g2",
+      "name": "2. What is loaded, and how big",
+      "description": "Left: only what the host loaded as a plugin - this bridge, on its own. Right: the host's own effect assemblies. Each row joins the managed view (version, public types) with the native one (how much of the file is mapped), and names any assembly present twice with different versions.",
+      "nodeInstanceIds": ["n2-plugins-mine", "n2-plugins-host"]
+    },
+    {
+      "id": "g3",
+      "name": "3. The image the host has open",
+      "description": "Size, layer count and layer names of the active image, read through the host's own objects. Draw something or add a layer, then run it again: the numbers follow.",
+      "nodeInstanceIds": ["n3-doc-info"]
+    },
+    {
+      "id": "g4",
+      "name": "4. Change what the host looks like",
+      "description": "Adds a button to the host's toolbar, next to the gear and the question mark. Pressing it opens this editor at the port NGOL actually listens on. The right-hand node takes the button away again - the host has no API for either direction, so this is done by walking its window.",
+      "nodeInstanceIds": ["n4-button-add", "n4-button-remove"]
+    },
+    {
+      "id": "g5",
+      "name": "5. Ride the host's own event, and add something the host lacks",
+      "description": "Subscribes to the event the host raises when the active image changes, and uses it to remember where the floating tool windows sat for each image. Open two saved images, arrange the tool windows differently in each, then switch back and forth: the windows follow the image. The positions are kept in the key-value store, so they survive a restart. The right-hand node stops it.",
+      "nodeInstanceIds": ["n5-watch-start", "n5-watch-stop"]
+    },
+    {
+      "id": "g6",
+      "name": "6. The same process, seen natively",
+      "description": "The generic analysis nodes work here too: this one lists the loaded modules largest first. The host is a .NET application, so the managed view above and this native one are two sides of one process.",
+      "nodeInstanceIds": ["n6-modules"]
+    }
+  ],
+  "annotations": []
+}

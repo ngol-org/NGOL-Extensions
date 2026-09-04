@@ -1,0 +1,167 @@
+{
+  "id": "overlay-dice-on-target",
+  "name": "Overlay Dice On Target",
+  "description": "対象アプリが描いた絵の上に、回転するサイコロを重ねる。対象は絵の素材も描画のしかけも持たなくてよい。グラフは2つに分かれている。準備の側で画面へ出す呼び出しを見つけてスワップチェーンを捕まえ、描画の側で絵を出す。準備を2回、そのあと描画を1回。注意: サイコロが出ている間に準備を走らせないこと。",
+  "schemaVersion": "0.2.0",
+  "version": 1,
+  "createdAt": "2026-08-16T07:19:58.497+00:00",
+  "nodes": [
+    {
+      "instanceId": "present",
+      "nodeTypeId": "ngol.gfx.present_address",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 60,
+        "y": 260
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "watch",
+      "nodeTypeId": "ngol.hook.watch_function",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 350,
+        "y": 260
+      },
+      "paramValues": {
+        "enabled": true
+      },
+      "size": null
+    },
+    {
+      "instanceId": "swapchain",
+      "nodeTypeId": "ngol.snapshot.string",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 640,
+        "y": 260
+      },
+      "paramValues": {},
+      "size": null
+    },
+    {
+      "instanceId": "overlay",
+      "nodeTypeId": "ngol.gfx.overlay_dice",
+      "nodeTypeVersion": null,
+      "position": {
+        "x": 625.860046,
+        "y": 596.206604
+      },
+      "paramValues": {
+        "enabled": true,
+        "hook_present": true,
+        "show_fps": true
+      },
+      "size": null
+    }
+  ],
+  "connections": [
+    {
+      "fromNodeInstanceId": "present",
+      "fromPortName": "present_address_hex",
+      "toNodeInstanceId": "watch",
+      "toPortName": "absolute_address_hex"
+    },
+    {
+      "fromNodeInstanceId": "watch",
+      "fromPortName": "last_a0",
+      "toNodeInstanceId": "swapchain",
+      "toPortName": "string"
+    }
+  ],
+  "fragments": [
+    {
+      "id": "setup",
+      "nodeInstanceIds": [
+        "present",
+        "watch",
+        "swapchain"
+      ]
+    },
+    {
+      "id": "draw",
+      "nodeInstanceIds": [
+        "overlay"
+      ]
+    }
+  ],
+  "fragmentLinks": [
+    {
+      "sourceSnapshotNodeInstanceId": "swapchain",
+      "sourcePortName": "string",
+      "toNodeInstanceId": "overlay",
+      "toPortName": "swapchain_hex"
+    }
+  ],
+  "groups": [],
+  "annotations": [
+    {
+      "id": "a-howto",
+      "text": "使い方\n\n1. 準備の側を2回実行する。まだ何も描かれない。\n   見張りは「直前に見た呼び出し」のスワップチェーンを報告するので、1回目はまだ報告するものが無い。\n2. 描画の側を1回実行する。対象の絵の上にサイコロが出る。\n\n2つに分けてあるのは、描画の側だけを何度でも実行し直せるようにするため。",
+      "position": {
+        "x": 57.3867149,
+        "y": -123.330315
+      },
+      "width": 460,
+      "height": 180,
+      "color": "#e3f2fd"
+    },
+    {
+      "id": "a-warning",
+      "text": "【注意】サイコロが出ている間に準備を走らせないこと\n\n番地を調べるには使い捨てのスワップチェーンを作る必要があり、それを作ると、\n先に割り込んでいる別のオーバーレイが呼び出し表を読み直す。\nそのとき表に入っているこちらの入口を「画面へ出す関数の実体」と見なして飛び越しを書き込むため、\n呼び出しが輪になる。\n\n実機で確認済み: 数秒のうちに対象が落ちた。準備と描画を分けてあるのはこのため。",
+      "position": {
+        "x": 546.933594,
+        "y": -122.023674
+      },
+      "width": 520,
+      "height": 200,
+      "color": "#ffebee"
+    },
+    {
+      "id": "a-present",
+      "text": "画面へ出す呼び出しの番地を調べる。\n\n先に誰かが割り込んでいるかも報告する。present_hook_chain を読むこと。\nどのモジュールにも属さない番地から始まっていたら、呼び出し表が誰かに差し替えられている。",
+      "position": {
+        "x": 59.5996361,
+        "y": 95.5522995
+      },
+      "width": 280,
+      "height": 150,
+      "color": "#fff8e1"
+    },
+    {
+      "id": "a-watch",
+      "text": "その呼び出しを、挙動を変えずに見張る。\n直近の呼び出しの第1引数を報告し、それが対象の描画先のスワップチェーンにあたる。",
+      "position": {
+        "x": 355.679718,
+        "y": 92.9390106
+      },
+      "width": 277.177246,
+      "height": 150.679153,
+      "color": "#fff8e1"
+    },
+    {
+      "id": "a-snapshot",
+      "text": "捕まえた番地を保持する。\nこれがあるので、準備を走らせ直さずに描画の側だけを実行できる。",
+      "position": {
+        "x": 644.08905,
+        "y": 91.63237
+      },
+      "width": 284.697693,
+      "height": 149.47821,
+      "color": "#fff8e1"
+    },
+    {
+      "id": "a-overlay",
+      "text": "対象自身の描画先へ、対象の装置を借りて描く。\n別のウィンドウは作らず、画像ファイルも要らない。絵も形もこのノードが組み立てる。\n\n止めるときは、WebUI の永続実行の停止を使う。呼び出し表も元に戻る。",
+      "position": {
+        "x": 276.205139,
+        "y": 601.724854
+      },
+      "width": 292.163086,
+      "height": 134.400726,
+      "color": "#fff8e1"
+    }
+  ]
+}

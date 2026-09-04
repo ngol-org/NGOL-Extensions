@@ -1,0 +1,5 @@
+# PresentAddress ノードの構成ファイル
+D3D11PresentAddressNode.cs
+..\_shared\NgolJumpChain.cs
+..\_shared\NgolModuleDefault.cs
+..\_shared\NgolSafeMemory.cs

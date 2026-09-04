@@ -1,0 +1,210 @@
+{
+ "id": "aviutl2-sample-midpoint-pause",
+ "name": "中間点で動きを一拍止める",
+ "description": "移動の途中に中間点を 2 つ置き、その区間だけ同じ値にして止める。値の並びが中間点の数だけ増える書き方を使う。",
+ "schemaVersion": "0.2.0",
+ "nodes": [
+  {
+   "instanceId": "y0-show",
+   "nodeTypeId": "aviutl.edit.layer_enable",
+   "position": {
+    "x": -280,
+    "y": 0
+   },
+   "paramValues": {
+    "layer": 20,
+    "action": "on"
+   }
+  },
+  {
+   "instanceId": "a1",
+   "nodeTypeId": "aviutl.edit.create_object",
+   "position": {
+    "x": 0,
+    "y": 0
+   },
+   "paramValues": {
+    "layer": 20,
+    "frame": 0,
+    "alias": "[Object]\r\nframe=0,90\r\n[Object.0]\r\neffect.name=テキスト\r\nサイズ=80.00\r\n文字色=ffdd44\r\nテキスト=PAUSE\r\n[Object.1]\r\neffect.name=標準描画\r\nX=-600.00,600.00,直線移動,0\r\n"
+   }
+  },
+  {
+   "instanceId": "a2",
+   "nodeTypeId": "aviutl.edit.section_call",
+   "position": {
+    "x": 280,
+    "y": 0
+   },
+   "paramValues": {
+    "function": "create_object_section",
+    "layer": 20,
+    "frame": 0,
+    "index": 30,
+    "apply": true
+   }
+  },
+  {
+   "instanceId": "a3",
+   "nodeTypeId": "aviutl.edit.section_call",
+   "position": {
+    "x": 560,
+    "y": 0
+   },
+   "paramValues": {
+    "function": "create_object_section",
+    "layer": 20,
+    "frame": 0,
+    "index": 60,
+    "apply": true
+   }
+  },
+  {
+   "instanceId": "a4",
+   "nodeTypeId": "aviutl.edit.object_item",
+   "position": {
+    "x": 840,
+    "y": 0
+   },
+   "paramValues": {
+    "layer": 20,
+    "frame": 0,
+    "effect": "標準描画",
+    "item": "X",
+    "value": "-600.00,0.00,0.00,600.00,直線移動,0",
+    "allow_comma": true
+   }
+  },
+  {
+   "instanceId": "a5",
+   "nodeTypeId": "aviutl.edit.section_call",
+   "position": {
+    "x": 1120,
+    "y": 0
+   },
+   "paramValues": {
+    "function": "get_object_track_value",
+    "layer": 20,
+    "frame": 0,
+    "index": 0,
+    "name": "標準描画|X|90",
+    "apply": true
+   }
+  },
+  {
+   "instanceId": "a6",
+   "nodeTypeId": "aviutl.edit.capture_movie",
+   "position": {
+    "x": 1400,
+    "y": 0
+   },
+   "paramValues": {
+    "output_path": "%TEMP%/ngol-aviutl2-samples/midpoint-pause/movie.mp4",
+    "frame_from": 0,
+    "frame_to": 90,
+    "fps": 30,
+    "max_width": 640
+   }
+  },
+  {
+   "instanceId": "z0-del",
+   "nodeTypeId": "aviutl.edit.section_call",
+   "position": {
+    "x": 1680,
+    "y": 0
+   },
+   "paramValues": {
+    "function": "delete_object",
+    "layer": 20,
+    "frame": 0,
+    "apply": true
+   }
+  }
+ ],
+ "connections": [
+  {
+   "fromNodeInstanceId": "y0-show",
+   "fromPortName": "__exec_out__",
+   "toNodeInstanceId": "a1",
+   "toPortName": "__exec_in__"
+  },
+  {
+   "fromNodeInstanceId": "a1",
+   "fromPortName": "__exec_out__",
+   "toNodeInstanceId": "a2",
+   "toPortName": "__exec_in__"
+  },
+  {
+   "fromNodeInstanceId": "a2",
+   "fromPortName": "__exec_out__",
+   "toNodeInstanceId": "a3",
+   "toPortName": "__exec_in__"
+  },
+  {
+   "fromNodeInstanceId": "a3",
+   "fromPortName": "__exec_out__",
+   "toNodeInstanceId": "a4",
+   "toPortName": "__exec_in__"
+  },
+  {
+   "fromNodeInstanceId": "a4",
+   "fromPortName": "__exec_out__",
+   "toNodeInstanceId": "a5",
+   "toPortName": "__exec_in__"
+  },
+  {
+   "fromNodeInstanceId": "a5",
+   "fromPortName": "__exec_out__",
+   "toNodeInstanceId": "a6",
+   "toPortName": "__exec_in__"
+  }
+ ],
+ "fragments": [
+  {
+   "id": "run",
+   "name": "組み立てて確かめる",
+   "nodeInstanceIds": [
+    "y0-show",
+    "a1",
+    "a2",
+    "a3",
+    "a4",
+    "a5",
+    "a6"
+   ]
+  },
+  {
+   "id": "cleanup",
+   "name": "片付ける",
+   "nodeInstanceIds": [
+    "z0-del"
+   ]
+  }
+ ],
+ "groups": [
+  {
+   "id": "g-run",
+   "name": "組み立てて確かめる",
+   "nodeInstanceIds": [
+    "y0-show",
+    "a1",
+    "a2",
+    "a3",
+    "a4",
+    "a5",
+    "a6"
+   ],
+   "description": "文字を左から右へ動かし、真ん中の区間だけ動かさない。設定値は 開始,中間点,中間点,終了,移動方法,パラメータ の順で並べる。"
+  },
+  {
+   "id": "g-clean",
+   "name": "片付ける",
+   "nodeInstanceIds": [
+    "z0-del"
+   ],
+   "description": "この見本が置いたものを消す。試したあと編集中のものに残らないようにする。"
+  }
+ ],
+ "annotations": [],
+ "fragmentLinks": []
+}

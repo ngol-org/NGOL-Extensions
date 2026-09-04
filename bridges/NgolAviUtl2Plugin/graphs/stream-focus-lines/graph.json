@@ -1,0 +1,325 @@
+{
+  "id": "stream-focus-lines",
+  "name": "集中線（出しっぱなし）",
+  "description": "驚いた・強調したいとき。回り続けるので出したままにできる。 透過つきで書き出し、そのまま相手のシーンへ載せる。",
+  "schemaVersion": "0.2.0",
+  "nodes": [
+    {
+      "instanceId": "n-probe",
+      "nodeTypeId": "ngol.link.probe",
+      "position": {
+        "x": 40,
+        "y": 40
+      },
+      "paramValues": {
+        "start_port": 11156,
+        "count": 15,
+        "name_contains": "obs"
+      }
+    },
+    {
+      "instanceId": "n-hide16",
+      "nodeTypeId": "aviutl.edit.layer_enable",
+      "position": {
+        "x": 40,
+        "y": 180
+      },
+      "paramValues": {
+        "layer": 16,
+        "action": "off"
+      }
+    },
+    {
+      "instanceId": "n-hide17",
+      "nodeTypeId": "aviutl.edit.layer_enable",
+      "position": {
+        "x": 190,
+        "y": 180
+      },
+      "paramValues": {
+        "layer": 17,
+        "action": "off"
+      }
+    },
+    {
+      "instanceId": "n-hide18",
+      "nodeTypeId": "aviutl.edit.layer_enable",
+      "position": {
+        "x": 340,
+        "y": 180
+      },
+      "paramValues": {
+        "layer": 18,
+        "action": "off"
+      }
+    },
+    {
+      "instanceId": "n-hide19",
+      "nodeTypeId": "aviutl.edit.layer_enable",
+      "position": {
+        "x": 490,
+        "y": 180
+      },
+      "paramValues": {
+        "layer": 19,
+        "action": "off"
+      }
+    },
+    {
+      "instanceId": "n-hide20",
+      "nodeTypeId": "aviutl.edit.layer_enable",
+      "position": {
+        "x": 640,
+        "y": 180
+      },
+      "paramValues": {
+        "layer": 20,
+        "action": "off"
+      }
+    },
+    {
+      "instanceId": "n-show",
+      "nodeTypeId": "aviutl.edit.layer_enable",
+      "position": {
+        "x": 790,
+        "y": 180
+      },
+      "paramValues": {
+        "layer": 16,
+        "action": "on"
+      }
+    },
+    {
+      "instanceId": "n-make",
+      "nodeTypeId": "aviutl.edit.create_object",
+      "position": {
+        "x": 40,
+        "y": 300
+      },
+      "paramValues": {
+        "layer": 16,
+        "frame": 0,
+        "alias": "[Object]\r\nframe=0,59\r\n[Object.0]\r\neffect.name=集中線\r\n濃さ=70.00\r\n速さ=30.00\r\n中心幅=420.00\r\n色=ffee88\r\n[Object.1]\r\neffect.name=標準描画\r\n"
+      }
+    },
+    {
+      "instanceId": "n-export",
+      "nodeTypeId": "aviutl.edit.capture_movie",
+      "position": {
+        "x": 340,
+        "y": 300
+      },
+      "paramValues": {
+        "output_path": "D:/Temp/ngol_stream/focus-lines.webm",
+        "frame_from": 0,
+        "frame_to": 59,
+        "fps": 30,
+        "max_width": 640,
+        "keep_alpha": true,
+        "encoder_path": "D:/Tools/Movie/ffmpeg/bin/ffmpeg.exe"
+      }
+    },
+    {
+      "instanceId": "n-drop",
+      "nodeTypeId": "ngol.link.run_node",
+      "position": {
+        "x": 340,
+        "y": 40
+      },
+      "paramValues": {
+        "node_type_id": "obs.source.edit",
+        "inputs_json": "{\"name\":\"NGOL Focus Lines\",\"remove\":true}",
+        "pick": "result"
+      }
+    },
+    {
+      "instanceId": "n-add",
+      "nodeTypeId": "ngol.link.run_node",
+      "position": {
+        "x": 640,
+        "y": 40
+      },
+      "paramValues": {
+        "node_type_id": "obs.source.edit",
+        "inputs_json": "{\"name\":\"NGOL Focus Lines\",\"id\":\"ffmpeg_source\",\"settings\":\"{\\\"local_file\\\":\\\"{1}\\\",\\\"is_local_file\\\":true,\\\"looping\\\":true,\\\"restart_on_activate\\\":false,\\\"clear_on_media_end\\\":false}\"}",
+        "pick": "result"
+      }
+    },
+    {
+      "instanceId": "n-fit",
+      "nodeTypeId": "ngol.link.run_node",
+      "position": {
+        "x": 940,
+        "y": 40
+      },
+      "paramValues": {
+        "node_type_id": "obs.sceneitem.set",
+        "inputs_json": "{\"name\":\"NGOL Focus Lines\",\"x\":0,\"y\":0,\"scale_x\":3.0,\"scale_y\":3.0}",
+        "pick": "result"
+      }
+    },
+    {
+      "instanceId": "n-check",
+      "nodeTypeId": "ngol.link.run_node",
+      "position": {
+        "x": 1240,
+        "y": 40
+      },
+      "paramValues": {
+        "node_type_id": "obs.capture",
+        "inputs_json": "{\"output_path\":\"D:/Temp/ngol_stream/stream-focus-lines.png\",\"match_color\":\"ffee88\",\"match_tolerance\":60,\"max_width\":640}",
+        "pick": "match_ratio"
+      }
+    }
+  ],
+  "connections": [
+    {
+      "fromNodeInstanceId": "n-hide16",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-hide17",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "n-hide17",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-hide18",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "n-hide18",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-hide19",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "n-hide19",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-hide20",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "n-hide20",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-show",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "n-show",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-make",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "n-probe",
+      "fromPortName": "port",
+      "toNodeInstanceId": "n-drop",
+      "toPortName": "port"
+    },
+    {
+      "fromNodeInstanceId": "n-probe",
+      "fromPortName": "port",
+      "toNodeInstanceId": "n-add",
+      "toPortName": "port"
+    },
+    {
+      "fromNodeInstanceId": "n-probe",
+      "fromPortName": "port",
+      "toNodeInstanceId": "n-fit",
+      "toPortName": "port"
+    },
+    {
+      "fromNodeInstanceId": "n-probe",
+      "fromPortName": "port",
+      "toNodeInstanceId": "n-check",
+      "toPortName": "port"
+    },
+    {
+      "fromNodeInstanceId": "n-export",
+      "fromPortName": "saved_path",
+      "toNodeInstanceId": "n-add",
+      "toPortName": "arg1"
+    },
+    {
+      "fromNodeInstanceId": "n-make",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-export",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "n-export",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-add",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "n-drop",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-add",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "n-add",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-fit",
+      "toPortName": "__exec_in__"
+    },
+    {
+      "fromNodeInstanceId": "n-fit",
+      "fromPortName": "__exec_out__",
+      "toNodeInstanceId": "n-check",
+      "toPortName": "__exec_in__"
+    }
+  ],
+  "fragmentLinks": [],
+  "groups": [
+    {
+      "id": "g1",
+      "name": "1. 相手を探す",
+      "description": "待ち受けている NGOL を名前で引く。番号を書き固めない。",
+      "nodeInstanceIds": [
+        "n-probe"
+      ]
+    },
+    {
+      "id": "g0",
+      "name": "0. 場を片付ける",
+      "description": "書き出しは画面全体を描く。他の見本が残っていると混ざり、しかも別の素材が出来ただけでは失敗に見えない。使う帯を消してから自分だけ出す。",
+      "nodeInstanceIds": [
+        "n-hide16",
+        "n-hide17",
+        "n-hide18",
+        "n-hide19",
+        "n-hide20",
+        "n-show"
+      ]
+    },
+    {
+      "id": "g2",
+      "name": "2. 素材を作って書き出す",
+      "description": "効果を組み、透過つきで書き出す。keep_alpha を落とすと重ねられない。",
+      "nodeInstanceIds": [
+        "n-make",
+        "n-export"
+      ]
+    },
+    {
+      "id": "g3",
+      "name": "3. 相手のシーンへ載せる",
+      "description": "前回の残りを外してから足し、画面いっぱいに広げる。",
+      "nodeInstanceIds": [
+        "n-drop",
+        "n-add",
+        "n-fit"
+      ]
+    },
+    {
+      "id": "g4",
+      "name": "4. 載ったことを数で確かめる",
+      "description": "素材の色が何割あるかを受け取る。人が画面を見ない。",
+      "nodeInstanceIds": [
+        "n-check"
+      ]
+    }
+  ],
+  "annotations": []
+}

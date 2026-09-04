@@ -1,0 +1,4 @@
+# MemoryRegionProbeNode の構成ファイル
+MemoryRegionProbeNode.cs
+..\_shared\NgolModuleDefault.cs
+..\_shared\NgolSafeMemory.cs

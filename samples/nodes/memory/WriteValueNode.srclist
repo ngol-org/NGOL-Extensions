@@ -1,0 +1,5 @@
+# WriteValueNode の構成ファイル
+WriteValueNode.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolAddressResolve.cs
+..\_shared\NgolValueCodec.cs

@@ -1,0 +1,4 @@
+# AviUtl2CaptureCanvasNode の構成ファイル
+AviUtl2CaptureCanvasNode.cs
+_shared\AviUtl2Frame.cs
+ext\_shared\NgolPngWriter.cs

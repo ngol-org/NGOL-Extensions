@@ -1,0 +1,33 @@
+{
+  "id": "shader-warn-tint",
+  "name": "警告の赤",
+  "description": "画面ぜんぶを赤へ寄せて脈打たせる。手が離せない・少し待ってほしいときに。 計算式を文字列で渡し、OBS Studio が毎フレーム GPU で描く。素材を書き出して重ねる形と違い、下地の映像そのものに効く。",
+  "schemaVersion": "0.2.0",
+  "groups": [
+    {
+      "id": "g-apply",
+      "name": "警告の赤",
+      "description": "使い方: source に効かせたいソースの名前を入れて実行する。 外すときは remove を立てて同じ名前で実行する。 通らなかったときは json の shader_error に理由が入る（下地は消えず、そのまま通る）。数値: p1: 強さ 0〜1",
+      "nodeInstanceIds": [
+        "n-apply"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "instanceId": "n-apply",
+      "nodeTypeId": "obs.source.filter",
+      "position": {
+        "x": 40,
+        "y": 40
+      },
+      "paramValues": {
+        "name": "",
+        "filter": "shader-warn-tint",
+        "filter_id": "ngol_shader",
+        "settings": "{\"shader\": \"float4 render(float2 uv)\\n{\\n\\tfloat4 c = sample_at(uv);\\n\\tfloat beat = 0.5 + 0.5 * sin(elapsed * 6.0);\\n\\tfloat amount = p1 * (0.35 + 0.65 * beat);\\n\\treturn float4(lerp(c.rgb, float3(1.0, 0.05, 0.05), amount), c.a);\\n}\\n\", \"p1\": 1.0, \"p2\": 0.0, \"p3\": 0.0, \"p4\": 0.0}"
+      }
+    }
+  ],
+  "connections": []
+}

@@ -1,0 +1,7 @@
+# CaptureBackbufferNode の構成ファイル
+CaptureBackbufferNode.cs
+D3D11Capture.cs
+D3D12Capture.cs
+..\_shared\NgolComInterop.cs
+..\_shared\NgolSafeMemory.cs
+..\_shared\NgolPngWriter.cs
